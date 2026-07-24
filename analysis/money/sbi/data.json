@@ -1,0 +1,23 @@
+{
+  "venture": "SBI", "name": "Social Basic Income / ScryptDole", "sector": "money",
+  "run": 2, "accessed": "2026-07-23",
+  "tier_enrolled": {"T1": [1000, 7000], "T2": [200000, 2000000], "T3": [7500000, 10000000], "active_fraction": [0.30, 0.40]},
+  "lenses": {
+    "tps_created": {"unit": "tx/sec", "T1": [0.0007, 0.010], "T2": [0.13, 2.9], "T3": [5, 15], "confidence": "medium"},
+    "mest": {"unit": "state-transitions/sec", "T1": [0.0009, 0.015], "T2": [0.16, 4.4], "T3": [6, 22],
+      "compression_ratio_est": [1.2, 1.5], "note": "7:1 framework constant does NOT apply — no clean legacy analog for unbacked social-income token", "confidence": "low"},
+    "ttr_local": {"unit": "USD float + Confidence-Farm TVL", "T1": [3000, 700000], "T2": [600000, 140000000], "T3": [22000000, 1050000000],
+      "social_price_band_usd": [0.01, 0.25], "backing": "none_unbacked", "confidence": "low",
+      "note": "value emergent/social; top of range aspirational, low end (→0) is the honest scenario"},
+    "vrl": {"unit": "USD/yr", "usd_sec": {"T1": [0.0001, 0.019], "T2": [0.027, 3.7], "T3": [1, 27]},
+      "usd_yr": {"T3": [31500000, 840000000]}, "realized_usd_per_person_month": [1, 20],
+      "note": "set below GiveDirectly $22.50-40 cash floor because unbacked; Berlin 90% cash-out is downside case", "confidence": "low-medium"},
+    "rvc": {"net_new_accounts": {"T1": [1000, 7000], "T2": [200000, 2000000], "T3": [7500000, 10000000]},
+      "xrd_fee_burn_usd_yr": {"T1": [20, 3210], "T3": [155000, 4600000]},
+      "confidence_farm_tvl_usd": {"T1": [1000, 210000], "T3": [5000000, 315000000]},
+      "confidence": "high-on-accounts / medium-on-magnitude", "headline_lens": true,
+      "note": "free money = fastest account-acquisition in crypto (GoodDollar 300k+, Worldcoin 12M+)"}
+  },
+  "caveat": "Unbacked token → TTR/VRL top-ends aspirational, can collapse toward zero (Circles Berlin 90% cash-out). Sybil-resistance is a hard build: cheap PoP (Passport/BrightID) game-able; robust PoP (Worldcoin Orb) ~$42+/head + biometric-regulatory risk. Highest regulatory exposure of the six.",
+  "sources": ["https://medium.com/gooddollar/goodupdate-february-2024-62ff9b528173", "https://www.coingecko.com/en/coins/gooddollar", "https://defillama.com/protocol/gooddollar", "https://arxiv.org/abs/2504.02714", "https://www.givedirectly.org/2023-ubi-results", "https://world.org/blog/foundational-topics/the-circulating-supply-of-worldcoin-wld-an-explainer", "https://www.sciencedirect.com/science/article/abs/pii/S0016718524000411"]
+}

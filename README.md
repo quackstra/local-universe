@@ -10,19 +10,27 @@ new question. Source theses in [`sources/`](sources/). Full design in [`BRIEF.md
 
 ## The Big Number
 
-### **⟨ TBD ⟩ net-new Radix TPS at Tier-2 adoption**
+### **~730 – 6,100 net-new Radix TPS at movement scale (T3)**
 
-*Placeholder — filled by the first elf run. This is the headline the Prize Map produces.*
+15–120× Radix Babylon's live ~50 DeFi TPS. Supporting: **~$0.65–6.2T** tokenizable local
+resources · **~$18–190B/yr** retained locally · **~$0.5–1.5B/yr** XRD burned. Live dashboard:
+[**quackstra.github.io/local-universe**](https://quackstra.github.io/local-universe/).
 
-## The Five Lenses
+## The Five Lenses (Runs 1–2 complete)
 
-| Lens | What it measures | Status |
-|------|------------------|:------:|
-| **TPS-Created** | net-new on-ledger transactions/sec the stack generates | 🔴 TBD |
-| **MEST** | state transitions captured **+** compressed vs legacy rails | 🔴 TBD |
-| **TTR-Local** | slice of the $890T tokenizable universe LoFi unlocks | 🔴 TBD |
-| **VRL** — Value Retained Locally | $/sec of economic leakage recaptured (the community case) | 🔴 TBD |
-| **RVC** — Radix Value Capture | XRD fees + royalties + accounts + TVL (the Radix case) | 🔴 TBD |
+| Lens | What it measures | T3 headline |
+|------|------------------|:------|
+| **TPS-Created** | net-new on-ledger transactions/sec the stack generates | ~730–6,100 TPS |
+| **MEST** | state transitions captured **+** compressed vs legacy rails | ~300–470B/yr compressed (86%) |
+| **TTR-Local** | slice of the $890T tokenizable universe LoFi unlocks | ~$0.65–6.2T |
+| **VRL** — Value Retained Locally | $/sec of economic leakage recaptured (the community case) | ~$18–190B/yr |
+| **RVC** — Radix Value Capture | XRD fees + royalties + accounts + TVL (the Radix case) | ~$0.5–1.5B/yr burned |
+
+## Deliverables
+
+- **[Prize Map](reports/PRIZE_MAP.md)** — the total addressable prize across all six ventures.
+- **[Increment Ranking](reports/INCREMENT_RANKING.md)** — **CCS #1**, SRU #2, Business Ops #3.
+  Recommendation: open with **CCS** (best standalone ROI), or sequence **Business Ops → CCS → SRU**.
 
 ## The Six Ventures (from the source theses)
 
@@ -43,6 +51,7 @@ Scout → Architect → Elves → Publish
 
 ## Status
 
-🚧 **Scaffold — pre-first-run.** Framework and metric design complete; no capsules
-produced yet. Next: Ferg signs off on the lens/rubric design, then `okay elves,
-explore the local universe`.
+✅ **Runs 1–2 complete (2026-07-23).** All six ventures sized across five lenses × three
+tiers; Prize Map + Increment Ranking published; dashboard live. Next run: field-study the
+beachhead (T1) local-spend composition to de-risk VRL, and upgrade the 🔴/🟡 confidence tags.
+See [`notes/research_agenda.md`](notes/research_agenda.md).

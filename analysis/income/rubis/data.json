@@ -1,0 +1,22 @@
+{
+  "venture": "RUBIS", "name": "Radix Universal Basic Income Systems", "sector": "income",
+  "run": 2, "accessed": "2026-07-23",
+  "tier_enrolled": {"T1": [1000, 7000], "T2": [200000, 2000000], "T3": [7500000, 10000000], "active_fraction": [0.30, 0.40], "note": "simpler than SBI: mint+transfer only, no Confidence Farms"},
+  "lenses": {
+    "tps_created": {"unit": "tx/sec", "T1": [0.0007, 0.008], "T2": [0.13, 2.4], "T3": [4.8, 11.8], "confidence": "medium"},
+    "mest": {"unit": "state-transitions/sec", "T1": [0.0008, 0.011], "T2": [0.16, 3.4], "T3": [6, 17],
+      "compression_ratio_est": [1.1, 1.2], "note": "7:1 not applicable — no legacy analog; fewer instruments than SBI", "confidence": "low"},
+    "ttr_local": {"unit": "USD coin float", "T1": [3000, 525000], "T2": [600000, 105000000], "T3": [22000000, 750000000],
+      "social_price_band_usd": [0.01, 0.25], "price_support": "none", "backing": "none_unbacked", "confidence": "low",
+      "note": "most fragile value of the six — no price-support mechanism"},
+    "vrl": {"unit": "USD/yr", "usd_sec": {"T1": [0.0001, 0.019], "T2": [0.027, 3.7], "T3": [1, 27]},
+      "usd_yr": {"T3": [31500000, 840000000]}, "realized_usd_per_person_month": [1, 20],
+      "upside_model": "Circles Bali (Banjar governance integration)", "failure_case": "Circles Berlin cash-out", "confidence": "low-medium"},
+    "rvc": {"net_new_accounts": {"T1": [1000, 7000], "T2": [200000, 2000000], "T3": [7500000, 10000000]},
+      "xrd_fee_burn_usd_yr": {"T1": [20, 2600], "T3": [153000, 3700000]},
+      "confidence_farm_tvl_usd": 0, "confidence": "high-on-accounts", "headline_lens": true,
+      "note": "one fewer capture channel than SBI (no staking TVL), but simpler UX may convert/retain better"}
+  },
+  "caveat": "No backing + no price support → most fragile coin value of the six. Lives or dies on real local merchant acceptance; Berlin 90%-cash-out is the base-rate risk, not the exception. Total prize a notch below SBI on every $-lens.",
+  "sources": ["https://arxiv.org/abs/2504.02714", "https://aurpay.net/aurspace/circles-ubi/", "https://www.frontiersin.org/journals/blockchain/articles/10.3389/fbloc.2024.1362939/full", "https://www.givedirectly.org/2023-ubi-results", "https://coincodex.com/article/10087/gooddollar-digital-ubi-boosts-40k-people-from-180-countries", "https://world.org/blog/foundational-topics/the-circulating-supply-of-worldcoin-wld-an-explainer"]
+}

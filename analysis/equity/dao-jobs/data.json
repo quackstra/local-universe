@@ -1,0 +1,27 @@
+{
+  "venture": "DAO-JOBS", "name": "Community-Equity / Reg-CF Bridge", "sector": "equity",
+  "run": 2, "accessed": "2026-07-23",
+  "tier_orgs": {"T1": [100, 500], "T2": [50000, 500000], "T3": 4000000, "note": "T3 = ~1% of 400M MSMEs"},
+  "lenses": {
+    "tps_created": {"unit": "tx/sec", "T1": [0.008, 0.03], "T2": [1.6, 16], "T3": [63, 254],
+      "assumptions": {"tx_per_org_per_yr": [500, 2000]}, "confidence": "medium",
+      "note": "T3 >50 TPS exceeds Babylon ~50 DeFi TPS; presumes Xi'an sharding"},
+    "mest": {"ratio": 7, "reduction_pct": 86,
+      "new_captured_yr": {"T1": [250000, 1000000], "T2": [50000000, 500000000], "T3": 4000000000},
+      "legacy_displaced_yr": {"T1": [1750000, 7000000], "T2": [350000000, 3500000000], "T3": 28000000000},
+      "confidence": "medium / 7x framework constant"},
+    "ttr_local": {"unit": "USD tokenizable local-equity", "T1": [50000000, 250000000], "T2": [10000000000, 100000000000], "T3": [400000000000, 2000000000000],
+      "assumptions": {"equity_per_firm_usd": [100000, 500000], "us_private_equity_universe_usd": 6700000000000},
+      "confidence": "medium", "headline_lens": true},
+    "vrl": {"unit": "USD/yr", "usd_sec": {"T1": [0.07, 0.36], "T2": [7, 357], "T3": [262, 1308]},
+      "usd_yr": {"T1": [2250000, 11250000], "T2": [225000000, 11250000000], "T3": [8250000000, 41250000000]},
+      "params": {"leakage_rate": [0.30, 0.50], "recapture_fraction": [0.05, 0.15], "scope": "ownership/capital-return leakage only (avoids double-count with Business Ops fee leakage)"},
+      "confidence": "medium"},
+    "rvc": {"xrd_burnt_usd_yr": {"T1": [6000, 25000], "T2": [1250000, 12500000], "T3": 100000000},
+      "net_new_accounts": {"T1": 25000, "T2": [2500000, 25000000], "T3": 200000000},
+      "tvl_usd": {"T1": [2000000, 10000000], "T2": [200000000, 2000000000], "T3": [8000000000, 40000000000]},
+      "confidence": "medium"}
+  },
+  "caveat": "Reg-CF one-year resale lock-up + near-zero WY DAO-LLC adoption since 2021 → realistic penetration is low single-digit % for years. Ranges are addressable ceilings, not forecasts. Highest regulatory drag of all six ventures.",
+  "sources": ["https://kingscrowd.com/2024-investment-crowdfunding-trends-stats-and-platform-rankings/", "https://www.sec.gov/data-research/statistics-data-visualizations/regulation-crowdfunding-cf-offerings", "https://www.sciencedirect.com/science/article/abs/pii/S0047272725001641", "https://advocacy.sba.gov/2025/06/30/new-advocacy-report-shows-the-number-of-small-businesses-in-the-u-s-exceeds-36-million/", "https://www.wyoleg.gov/2021/Introduced/SF0038.pdf", "https://amiba.net/local-multiplier/", "https://docs.radixdlt.com/docs/using-royalties"]
+}

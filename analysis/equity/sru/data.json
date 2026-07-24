@@ -1,0 +1,63 @@
+{
+  "venture": "SRU",
+  "name": "Securitized Rental Units",
+  "sector": "equity",
+  "run": 1,
+  "accessed": "2026-07-23",
+  "tier_units": {
+    "T1": [500, 2000],
+    "T2": [100000, 1000000],
+    "T3": [7500000, 10000000],
+    "note": "T3 = ~1% of ~750M-1B global renter households; no authoritative global count (estimate)"
+  },
+  "lenses": {
+    "tps_created": {
+      "unit": "tx/sec",
+      "events_per_unit_yr": {"low": 24, "base": 36, "high": 48},
+      "T1": [0.0004, 0.003], "T2": [0.08, 1.5], "T3": [5.7, 15.2],
+      "confidence": "medium"
+    },
+    "mest": {
+      "legacy_mest_per_event": 7, "radix_mest_per_event": 1, "reduction_pct": 86,
+      "onledger_captured_yr": {"T1": [12000, 96000], "T2": [2400000, 48000000], "T3": [180000000, 480000000]},
+      "legacy_displaced_yr": {"T1": [72000, 576000], "T2": [14400000, 288000000], "T3": [1080000000, 2880000000]},
+      "confidence": "medium-capture / low-on-7x-multiplier"
+    },
+    "ttr_local": {
+      "unit": "USD tokenizable rental-equity",
+      "home_value_per_unit_usd": [200000, 400000],
+      "equity_fraction": {"floor": 0.03, "ceiling": 1.00, "empirical_upandup": 0.025},
+      "T1": [3000000, 800000000], "T2": [600000000, 400000000000], "T3": [45000000000, 4000000000000],
+      "crosscheck": {"deloitte_tokenized_re_2035_usd": 4000000000000, "rwa_market_2025_usd": 24000000000, "us_rental_stock_value_usd": 13800000000000},
+      "confidence": "medium",
+      "headline_lens": true
+    },
+    "vrl": {
+      "unit": "USD/yr retained locally",
+      "annual_rent_per_unit_usd": [10000, 18000], "leakage_rate": [0.20, 0.40], "recapture_fraction": [0.30, 0.70],
+      "T1": {"usd_yr": [300000, 10080000], "usd_sec": [0.0095, 0.32]},
+      "T2": {"usd_yr": [60000000, 5040000000], "usd_sec": [1.9, 160]},
+      "T3": {"usd_yr": [4500000000, 50400000000], "usd_sec": [143, 1598]},
+      "confidence": "low-medium"
+    },
+    "rvc": {
+      "network_fees_usd_yr": {"T1": [24, 1920], "T2": [4800, 960000], "T3": [360000, 9600000]},
+      "royalties_usd_yr": {"T1": [120, 9600], "T2": [24000, 4800000], "T3": [1800000, 48000000]},
+      "net_new_accounts": {"T1": [500, 2000], "T2": [100000, 1000000], "T3": [7500000, 10000000]},
+      "tvl_usd": {"T1": [3000000, 800000000], "T2": [600000000, 400000000000], "T3": [45000000000, 4000000000000]},
+      "radix_lifetime_tx_oct2024": 7000000,
+      "confidence": "medium-accounts-tvl / low-fee-usd"
+    }
+  },
+  "sources": [
+    "https://www.radixdlt.com/full-stack",
+    "https://arbor.com/blog/renters-now-represent-80-of-u-s-household-growth/",
+    "https://www.jchs.harvard.edu/americas-rental-housing-2024",
+    "https://coinlaw.io/asset-tokenization-statistics/",
+    "https://www.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-predictions/2025/tokenized-real-estate.html",
+    "https://upandup.co/how-it-works",
+    "https://www.forbes.com/sites/amydobson/2021/11/19/upup-which-aims-to-build-wealth-for-renters-surpasses-300-million-with-latest-funding-raise/",
+    "https://docs.radixdlt.com/docs/using-royalties",
+    "https://docs.radixdlt.com/main/reference-materials/transaction-fees.html"
+  ]
+}

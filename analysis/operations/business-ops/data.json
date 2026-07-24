@@ -1,0 +1,29 @@
+{
+  "venture": "BusinessOps", "name": "Business Ops Tools (payroll/inventory/payments/royalties)", "sector": "operations",
+  "run": 2, "accessed": "2026-07-23",
+  "tier_businesses": {"T1": [100, 500], "T2": [50000, 500000], "T3": 4000000, "note": "flow venture; force-multiplier rails"},
+  "lenses": {
+    "tps_created": {"unit": "tx/sec", "T1": [0.08, 0.63], "T2": [16, 159], "T3": [634, 5074],
+      "assumptions": {"tx_per_business_per_yr": [5000, 40000], "note": "payments-dominated; streaming payroll excluded to stay conservative"},
+      "confidence": "medium", "highest_tps": true,
+      "note": "T2/T3 far exceed Babylon ~50 DeFi TPS; requires Xi'an sharding (~1.4M tested peak)"},
+    "mest": {"ratio": 7, "reduction_pct": 86,
+      "new_captured_yr": {"T1": [2500000, 20000000], "T2": [500000000, 5000000000], "T3": 40000000000},
+      "legacy_displaced_yr": {"T1": [17500000, 140000000], "T2": [3500000000, 35000000000], "T3": 280000000000},
+      "confidence": "medium / 7x framework constant"},
+    "ttr_local": {"unit": "USD tokenizable working capital", "T1": 25000000, "T2": [2500000000, 25000000000], "T3": 200000000000,
+      "note": "LOW standalone TTR — flow venture, value lives in TPS/VRL/RVC",
+      "assumptions": {"working_capital_per_firm_usd": 50000}, "confidence": "low"},
+    "vrl": {"unit": "USD/yr", "usd_sec": {"T1": [0.03, 0.13], "T2": [2.85, 133], "T3": [105, 488]},
+      "usd_yr": {"T1": [900000, 4200000], "T2": [90000000, 4200000000], "T3": [3300000000, 15400000000]},
+      "params": {"fee_leakage": [0.02, 0.04], "recapture_fraction": [0.30, 0.70], "scope": "transaction-fee leakage only (interchange/processing/payroll SaaS); avoids double-count with DAO-JOBS ownership leakage"},
+      "confidence": "medium"},
+    "rvc": {"xrd_burnt_usd_yr": {"T1": [37500, 300000], "T2": [7500000, 75000000], "T3": [400000000, 1000000000]},
+      "net_new_accounts": {"T1": 10000, "T2": [1000000, 10000000], "T3": [80000000, 200000000]},
+      "tvl_usd": {"T1": 1250000, "T2": [125000000, 1250000000], "T3": 10000000000},
+      "confidence": "medium", "headline_lens": true,
+      "note": "~40B tx/yr at T3 = dominant XRD sink of all six ventures"}
+  },
+  "caveat": "T2/T3 volumes (16-5,074 TPS) blow past Radix Babylon's live ~50 DeFi TPS — upper tiers contingent on Xi'an sharding + merchants tolerating crypto-rail UX. Standalone prize modest; value is as the force-multiplier rail every other venture rides on.",
+  "sources": ["https://learn.radixdlt.com/article/what-is-the-throughput-tps-of-radixs-babylon-mainnet", "https://learn.radixdlt.com/article/how-do-transaction-fees-work-on-radix", "https://www.skyquestt.com/report/smb-software-market", "https://straitsresearch.com/report/payroll-outsourcing-market", "https://www.gminsights.com/industry-analysis/point-of-sale-pos-terminals-market", "https://medium.com/superfluid-blog/coinshift-streamlines-crypto-payroll-with-superfluid-money-streams-20d5cda6d763", "https://www.ifc.org/en/what-we-do/msme-day", "https://defillama.com/chain/radix"]
+}

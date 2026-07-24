@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local-Universe — Sizing the prize of LoFi on Radix</title>
+<meta name="description" content="How much new economic activity would the full ScryptDole + Local Stack thesis create on Radix — and which increment should the community build next? ~730–6,100 net-new TPS, ~$0.65–6.2T tokenizable local resources, ~$18–190B/yr retained locally.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Local-Universe">
+<meta property="og:title" content="Local-Universe — the size-of-prize study for LoFi on Radix">
+<meta property="og:description" content="Six local-DeFi ventures, five lenses, three adoption tiers. ~$0.65–6.2T tokenizable local resources; ~730–6,100 net-new Radix TPS at movement scale. CCS ranks #1 to build next.">
+<meta property="og:url" content="https://quackstra.github.io/local-universe/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Local-Universe — LoFi on Radix, sized">
+<meta name="twitter:description" content="The prize map + increment ranking for the ScryptDole + Local Stack thesis on Radix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0f14;
+  --card: #111a20;
+  --card-border: #1c2b33;
+  --teal: #06b6d4;      /* Radix cyan */
+  --green: #22c55e;     /* local / community */
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --purple: #8b5cf6;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --text: #f3f7f9;
+  --muted: #93a4ad;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.mono { font-family: var(--mono); }
+.muted { color: var(--muted); }
+.teal { color: var(--teal); } .green { color: var(--green); } .amber { color: var(--amber); }
+.purple { color: var(--purple); } .red { color: var(--red); }
+section { padding: 72px 0; opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+section.visible { opacity: 1; transform: translateY(0); }
+.card { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; padding: 28px; }
+h2 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -.02em; }
+.sub { color: var(--muted); font-size: 1.05rem; margin-bottom: 36px; max-width: 680px; }
+.eyebrow { font-family: var(--mono); font-size: .78rem; letter-spacing: .18em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+a { color: var(--teal); }
+
+/* hero */
+.hero { min-height: 96vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; opacity: 1 !important; transform: none !important; }
+.hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 32%, rgba(6,182,212,.10) 0%, transparent 60%), radial-gradient(ellipse at 75% 70%, rgba(34,197,94,.07) 0%, transparent 52%); }
+.hero > * { position: relative; z-index: 1; }
+.hero .kicker { font-family: var(--mono); font-size: .85rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+.hero h1 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 900; letter-spacing: -.03em; line-height: 1.04; max-width: 15ch; margin-bottom: 20px; }
+.hero h1 .grad { background: linear-gradient(120deg, var(--teal), var(--green)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.bignum { font-family: var(--mono); font-size: clamp(2.6rem, 8vw, 5.5rem); font-weight: 700; color: var(--green); letter-spacing: -.03em; margin: 10px 0 4px; }
+.bignum-label { color: var(--muted); max-width: 46ch; margin: 0 auto 30px; }
+.hero-strip { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 8px; }
+.chip { font-family: var(--mono); font-size: .82rem; background: var(--card); border: 1px solid var(--card-border); border-radius: 999px; padding: 8px 16px; color: var(--muted); }
+.chip b { color: var(--text); font-weight: 600; }
+.scroll-hint { margin-top: 46px; font-size: .8rem; color: var(--muted); font-family: var(--mono); animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+/* lenses */
+.grid { display: grid; gap: 18px; }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-2 { grid-template-columns: 1.2fr 1fr; }
+.lens { border-top: 3px solid var(--teal); }
+.lens:nth-child(2){border-top-color:var(--green)} .lens:nth-child(3){border-top-color:var(--amber)}
+.lens:nth-child(4){border-top-color:var(--purple)} .lens:nth-child(5){border-top-color:var(--blue)}
+.lens h3 { font-size: 1.02rem; margin-bottom: 4px; }
+.lens .tag { font-family: var(--mono); font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; }
+.lens p { font-size: .92rem; color: var(--muted); margin-top: 8px; }
+
+/* table */
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--card-border); }
+th { font-family: var(--mono); font-size: .74rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; }
+td.num, th.num { text-align: right; font-family: var(--mono); }
+tr:hover td { background: rgba(255,255,255,.02); }
+.rank1 td { background: rgba(34,197,94,.06); }
+.badge { font-family: var(--mono); font-size: .72rem; padding: 2px 8px; border-radius: 6px; border:1px solid var(--card-border); }
+.b-green{color:var(--green);border-color:rgba(34,197,94,.4)} .b-amber{color:var(--amber);border-color:rgba(245,158,11,.4)} .b-red{color:var(--red);border-color:rgba(239,68,68,.4)}
+
+.chart-wrap { position: relative; height: 360px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.callout { border-left: 3px solid var(--amber); padding: 14px 18px; background: rgba(245,158,11,.05); border-radius: 0 12px 12px 0; font-size: .93rem; }
+.callout.teal { border-left-color: var(--teal); background: rgba(6,182,212,.05); }
+.tiers { display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
+.tier .t { font-family: var(--mono); color: var(--teal); font-size:.8rem; letter-spacing:.1em; }
+footer { padding: 56px 0; border-top: 1px solid var(--card-border); color: var(--muted); font-size: .88rem; }
+footer a { color: var(--teal); text-decoration: none; }
+.disclaimer { font-size:.8rem; color:var(--muted); margin-top:10px; max-width:70ch; }
+@media (max-width: 900px){ .grid-3,.grid-5,.grid-2,.two,.tiers{grid-template-columns:1fr} .container{padding:0 18px} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="kicker">Local-Universe · a Universe-of-… research project</div>
+    <h1>Sizing the prize of <span class="grad">LoFi on Radix</span></h1>
+    <div class="bignum">~730–6,100</div>
+    <p class="bignum-label">net-new Radix <b>TPS</b> the full <em>ScryptDole + Local Stack</em> thesis could create at movement scale — <b>15–120× Babylon's live ~50 DeFi TPS</b>.</p>
+    <div class="hero-strip">
+      <span class="chip"><b>$0.65–6.2T</b> tokenizable local resources</span>
+      <span class="chip"><b>$18–190B/yr</b> retained locally</span>
+      <span class="chip"><b>~$0.5–1.5B/yr</b> XRD burned</span>
+      <span class="chip">6 ventures · 5 lenses · 3 tiers</span>
+    </div>
+    <div class="scroll-hint">↓ the prize, then which brick to build next</div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">The question</div>
+    <h2>What is the "size of prize," and which increment wins?</h2>
+    <p class="sub">Two 2022 concept papers — <em>ScryptDole</em> (unbacked social basic income) and <em>The Local Stack</em> (a menu of local-DeFi "LoFi" blueprints) — describe six ventures for empowering local economies on Radix. This study sizes each in the language the Radix community optimizes for, then ranks which one returns the most impact per unit of build effort. Every number is a counterfactual range, sourced, reported across three adoption tiers.</p>
+    <div class="tiers">
+      <div class="card tier"><div class="t">T1 · BEACHHEAD</div><p class="muted" style="margin-top:8px">1 flagship town, ~3–10k people. Anchor: <b>El Zonte</b> ("Bitcoin Beach") — a sobering base rate: only ~36% of households actively transacted after years.</p></div>
+      <div class="card tier"><div class="t">T2 · REGIONAL</div><p class="muted" style="margin-top:8px">100–1,000 communities. Anchor: <b>BerkShares</b> / Transition-Towns network scale — wide reach, but historically shallow dollar throughput.</p></div>
+      <div class="card tier"><div class="t">T3 · MOVEMENT</div><p class="muted" style="margin-top:8px">~1% of global local economies. Anchor: <b>400M MSMEs ≈ 50% of global GDP</b> → ~$550B/yr addressable local base.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">The framework</div>
+    <h2>Five lenses</h2>
+    <p class="sub">Two inherited from <a href="https://quackstra.github.io/universe-of-finance/">Universe of Finance</a> (MEST, TTR); three coined here (TTR re-scoped, plus VRL and RVC) to make the prize legible to a local community <em>and</em> to an XRD holder.</p>
+    <div class="grid grid-5">
+      <div class="card lens"><span class="tag">Big Number</span><h3>TPS-Created</h3><p>Net-new on-ledger transactions/sec the stack generates.</p></div>
+      <div class="card lens"><span class="tag">inverted</span><h3>MEST</h3><p>State-transitions captured <b>+</b> compressed vs legacy rails (~7→1).</p></div>
+      <div class="card lens"><span class="tag">scoped</span><h3>TTR-Local</h3><p>Slice of the $890T tokenizable universe LoFi unlocks.</p></div>
+      <div class="card lens"><span class="tag">coined</span><h3>VRL</h3><p><b>Value Retained Locally</b> — $/sec of leakage recaptured. The community case.</p></div>
+      <div class="card lens"><span class="tag">coined</span><h3>RVC</h3><p><b>Radix Value Capture</b> — XRD fees + royalties + accounts + TVL. The Radix case.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">Deliverable #1</div>
+    <h2>The Prize Map</h2>
+    <p class="sub">Per-venture prize at movement scale (T3). Bars show tokenizable local resources (TTR-Local, log scale) — the biggest raw prize, dominated by real-estate equity (SRU) and local-business equity (DAO-JOBS).</p>
+    <div class="card"><div class="chart-wrap"><canvas id="ttrChart"></canvas></div></div>
+    <div class="card" style="margin-top:18px; overflow-x:auto;">
+      <table>
+        <thead><tr><th>Venture</th><th class="num">TPS-Created</th><th class="num">TTR-Local</th><th class="num">VRL ($/yr)</th><th class="num">RVC (accounts)</th><th>Headline lens</th></tr></thead>
+        <tbody>
+          <tr><td><b>SRU</b> <span class="muted">Securitized Rental Units</span></td><td class="num">5.7–15.2</td><td class="num teal">$45B–$4.0T</td><td class="num">$4.5–50B</td><td class="num">7.5–10M</td><td>TTR-Local</td></tr>
+          <tr><td><b>CCS</b> <span class="muted">Complementary Currency</span></td><td class="num">19–714</td><td class="num">$3–15B</td><td class="num green">$1.8–81B</td><td class="num">10–100M</td><td>VRL</td></tr>
+          <tr><td><b>DAO-JOBS</b> <span class="muted">Equity / Reg-CF bridge</span></td><td class="num">63–254</td><td class="num teal">$400B–$2.0T</td><td class="num">$8.3–41B</td><td class="num">~200M</td><td>TTR-Local</td></tr>
+          <tr><td><b>Business Ops</b> <span class="muted">Payroll/payments rails</span></td><td class="num green">634–5,074</td><td class="num muted">$200B*</td><td class="num">$3.3–15.4B</td><td class="num">80–200M</td><td>RVC / TPS</td></tr>
+          <tr><td><b>SBI</b> <span class="muted">Social Basic Income</span></td><td class="num">5–15</td><td class="num muted">$22M–1.05B†</td><td class="num muted">$31M–840M</td><td class="num">7.5–10M</td><td>RVC (accounts)</td></tr>
+          <tr><td><b>RUBIS</b> <span class="muted">Local UBI coin</span></td><td class="num">4.8–11.8</td><td class="num muted">$22M–750M†</td><td class="num muted">$31M–840M</td><td class="num">7.5–10M</td><td>RVC (accounts)</td></tr>
+        </tbody>
+      </table>
+      <p class="disclaimer">* Business Ops is a flow venture — low standalone TTR; its value is in TPS/VRL/RVC. † SBI/RUBIS tokens are unbacked — TTR/VRL are soft and can collapse toward zero. Accounts overlap across ventures and are never summed.</p>
+    </div>
+    <div class="callout teal" style="margin-top:18px"><b>MEST — the "why Radix specifically" lens.</b> At T3 the stack captures ~45–70B new on-ledger state-transitions/yr and <b>compresses ~300–470B legacy transitions/yr (~86%, 7→1)</b> — but only for the four ventures with real incumbent rails (SRU, CCS, DAO-JOBS, Business Ops). The 7:1 constant <b>does not survive contact with SBI/RUBIS</b>: unbacked social-income tokens have no legacy rail to compress, so their honest ratio is ~1.2–1.5:1. The composability dividend is huge where there's an incumbent to displace, near-zero where the instrument is net-new.</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">Deliverable #2</div>
+    <h2>The Increment Ranking</h2>
+    <p class="sub">All six ventures scored 0–100 on a weighted rubric: prize-size (.25) · build-feasibility (.20) · Radix-fit (.15) · adoption-velocity (.20) · reg-risk-inverse (.10) · compounding (.10). The top three are tightly bunched — three <em>different strategies</em>, not three grades of one.</p>
+    <div class="two">
+      <div class="card"><div class="chart-wrap"><canvas id="rankChart"></canvas></div></div>
+      <div class="card" style="overflow-x:auto">
+        <table>
+          <thead><tr><th>#</th><th>Venture</th><th class="num">Score</th><th>Reg risk</th></tr></thead>
+          <tbody>
+            <tr class="rank1"><td>1</td><td><b>CCS</b></td><td class="num green">69.8</td><td><span class="badge b-amber">medium</span></td></tr>
+            <tr><td>2</td><td><b>SRU</b></td><td class="num">68.5</td><td><span class="badge b-red">high</span></td></tr>
+            <tr><td>3</td><td><b>Business Ops</b></td><td class="num">65.8</td><td><span class="badge b-green">low</span></td></tr>
+            <tr><td>4</td><td>DAO-JOBS</td><td class="num">58.5</td><td><span class="badge b-red">high</span></td></tr>
+            <tr><td>5</td><td>SBI / ScryptDole</td><td class="num">53.0</td><td><span class="badge b-red">highest</span></td></tr>
+            <tr><td>6</td><td>RUBIS</td><td class="num">52.0</td><td><span class="badge b-amber">medium</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="grid grid-2" style="margin-top:18px">
+      <div class="card"><h3 class="teal">Build one thing → CCS</h3><p class="muted" style="margin-top:8px">Best balance of prize, buildability and regulatory safety, and the single cleanest "only-possible-on-Radix" demo: badge-gated fees + atomic wrap/unwrap. Real precedent (BerkShares), 1:1 backed, strong sourced VRL story.</p></div>
+      <div class="card"><h3 class="green">Build a sequence → Business Ops → CCS → SRU</h3><p class="muted" style="margin-top:8px">Lay the rails first (Business Ops: top compounding + feasibility), ship the flagship showcase second (CCS), fast-follow with the hero/biggest-prize venture (SRU) once securities pathway + rails are proven. Gate SBI/RUBIS behind solved proof-of-personhood — don't lead with them.</p></div>
+    </div>
+    <div class="callout" style="margin-top:18px"><b>Biggest data gap.</b> A primary-source field study of local spend composition + realistic chain→local shift in one candidate beachhead town. VRL — the lens carrying the community case — swings ~30× on two unsourced inputs. The highest-ROI <em>research</em> increment is a single-town study; it de-risks the T1 numbers for every venture at once.</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="eyebrow">The gravity</div>
+    <h2>The honest floor</h2>
+    <p class="sub">Every T2/T3 figure rides on adoption the study cannot yet source. Two forces pull hard against the ceilings — and the durable Radix win is engineering out exactly what killed the predecessors.</p>
+    <div class="grid grid-3">
+      <div class="card"><h3 class="amber">The El Zonte base rate</h3><p class="muted" style="margin-top:8px">Even the flagship crypto-town saw only ~36% of households actively transacting after years of promotion. Assume 1-in-3, not universal uptake.</p></div>
+      <div class="card"><h3 class="red">The complementary-currency graveyard</h3><p class="muted" style="margin-top:8px">Bristol Pound wound down (2020), Ithaca HOURS defunct, BerkShares plateaued at ~$133k after 20 years — killed by legacy-rail maintenance cost.</p></div>
+      <div class="card"><h3 class="teal">The actual moat</h3><p class="muted" style="margin-top:8px">Not "issue a town token" but the reusable-blueprint + ~7→1 MEST compression that removes the operational overhead the graveyard died of.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p><b>Local-Universe</b> — the size-of-prize study for LoFi on Radix. Part of the Quackstra <em>Universe of…</em> ecosystem. Full methodology in <a href="BRIEF.md">BRIEF.md</a>; deliverables in <a href="reports/PRIZE_MAP.md">PRIZE_MAP.md</a> and <a href="reports/INCREMENT_RANKING.md">INCREMENT_RANKING.md</a>; per-venture audit trail in <a href="analysis/">analysis/</a>.</p>
+    <p class="disclaimer">All figures are counterfactual ranges (Runs 1–2, 2026-07-23), each sourced in the venture capsules. Ranges are deliberate — under this much adoption uncertainty a defensible band beats a false point estimate. Not investment advice. Sister projects: <a href="https://quackstra.github.io/universe-of-finance/">Finance</a> · Movement · Frynance · Onion.</p>
+  </div>
+</footer>
+
+<script>
+// scroll reveal
+const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:.12});
+document.querySelectorAll('section').forEach(s=>io.observe(s));
+
+const gridColor = 'rgba(255,255,255,.06)', tickColor = '#93a4ad';
+
+// TTR-Local by venture (T3 high, log scale, USD)
+new Chart(document.getElementById('ttrChart'), {
+  type: 'bar',
+  data: {
+    labels: ['SRU','DAO-JOBS','Business Ops','CCS','SBI','RUBIS'],
+    datasets: [{
+      label: 'TTR-Local (T3 high, USD)',
+      data: [4.0e12, 2.0e12, 2.0e11, 1.5e10, 1.05e9, 7.5e8],
+      backgroundColor: ['#06b6d4','#06b6d4','#334155','#22c55e','#3f3f46','#3f3f46'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display:false }, tooltip: { callbacks: { label: c => ' $' + (c.raw>=1e12? (c.raw/1e12)+'T' : c.raw>=1e9? (c.raw/1e9)+'B' : (c.raw/1e6)+'M') } } },
+    scales: {
+      x: { type:'logarithmic', grid:{color:gridColor}, ticks:{ color:tickColor, callback:v=>{const n=[1e9,1e10,1e11,1e12]; return n.includes(v)? (v>=1e12?'$'+v/1e12+'T':'$'+v/1e9+'B'):''; } } },
+      y: { grid:{display:false}, ticks:{ color:'#f3f7f9', font:{family:'JetBrains Mono'} } }
+    }
+  }
+});
+
+// Increment ranking scores
+new Chart(document.getElementById('rankChart'), {
+  type: 'bar',
+  data: {
+    labels: ['CCS','SRU','Business Ops','DAO-JOBS','SBI','RUBIS'],
+    datasets: [{
+      label: 'Weighted score (0–100)',
+      data: [69.8, 68.5, 65.8, 58.5, 53.0, 52.0],
+      backgroundColor: ['#22c55e','#06b6d4','#06b6d4','#475569','#475569','#475569'],
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display:false }, tooltip: { callbacks: { label: c=>' '+c.raw+' / 100' } } },
+    scales: {
+      y: { beginAtZero:true, max:80, grid:{color:gridColor}, ticks:{color:tickColor} },
+      x: { grid:{display:false}, ticks:{color:'#f3f7f9', font:{family:'JetBrains Mono', size:11}} }
+    }
+  }
+});
+</script>
+</body>
+</html>

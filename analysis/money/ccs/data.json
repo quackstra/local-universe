@@ -1,0 +1,65 @@
+{
+  "venture": "CCS",
+  "name": "Complementary Currency Systems",
+  "sector": "money",
+  "run": 1,
+  "accessed": "2026-07-23",
+  "assumptions": {
+    "velocity_per_yr": [4, 12],
+    "avg_tx_usd": [10, 25],
+    "float_per_capita_usd": [50, 300],
+    "event_multiplier": 1.25,
+    "note": "1.25x adds wrap/unwrap + redemption + badge-gated fee events; fee levy bundled atomically with transfer (MEST-compression), counted once"
+  },
+  "lenses": {
+    "tps_created": {
+      "unit": "tx/sec",
+      "T1": [0.0003, 0.09], "T2": [0.06, 142], "T3": [19, 714],
+      "events_yr": {"T1": [10000, 2700000], "T2": [2000000, 4500000000], "T3": [600000000, 22500000000]},
+      "confidence": "medium"
+    },
+    "mest": {
+      "ratio": 7, "compression_pct": 86,
+      "new_captured_yr": {"T1": [10000, 2700000], "T2": [2000000, 4500000000], "T3": [600000000, 22500000000]},
+      "legacy_displaced_yr": {"T1": [70000, 18900000], "T2": [14000000, 31500000000], "T3": [4200000000, 157500000000]},
+      "confidence": "medium / 7x is framework constant"
+    },
+    "ttr_local": {
+      "unit": "USD tokenizable float",
+      "T1": [50000, 1800000], "T2": [10000000, 3000000000], "T3": [3000000000, 15000000000],
+      "realized_today_anchors": {"berkshares_usd": 133000, "bristol_gbp_peak": 1000000, "ithaca_usd_peak": 110000, "sarafu_annual_vol_usd": 2800000},
+      "global_local_retail_usd": 15000000000000,
+      "confidence": "high-on-anchors / medium-on-T3-ceiling"
+    },
+    "vrl": {
+      "retention_rate_r": [0.15, 0.45],
+      "T1": {"usd_yr": [30000, 9700000], "usd_sec": [0.001, 0.31]},
+      "T2": {"usd_yr": [6000000, 16200000000], "usd_sec": [0.19, 514]},
+      "T3": {"usd_yr": [1800000000, 81000000000], "usd_sec": [57, 2568]},
+      "anchor": "local independent recirculates ~$45 vs chain ~$14 per $100 (AMIBA)",
+      "confidence": "medium",
+      "headline_lens": true
+    },
+    "rvc": {
+      "tvl_usd": {"T1": [50000, 1800000], "T2": [10000000, 3000000000], "T3": [3000000000, 15000000000]},
+      "xrd_burnt_yr": {"rate_per_event_xrd": 0.05, "T1": [500, 135000], "T2": [100000, 225000000], "T3": [30000000, 1125000000]},
+      "royalties_usd_yr": {"rate_per_tx_usd": [0.01, 0.10], "T1": [100, 270000], "T2": [20000, 450000000], "T3": [6000000, 2250000000]},
+      "new_accounts": {"T1": [1000, 6000], "T2": [200000, 10000000], "T3": [10000000, 100000000]},
+      "confidence": "high-mechanics / medium-volume / low-fee-usd"
+    }
+  },
+  "caveat": "Every historical complementary currency in the anchor set shrank or died (Bristol Pound wound down 2020, Ithaca HOURS defunct, BerkShares plateaued ~$133k after 20yr) — killed by legacy-rail maintenance cost. The durable win is the reusable-blueprint + atomic-composability cost collapse that removes that overhead.",
+  "sources": [
+    "https://www.nature.com/articles/s41597-022-01539-4",
+    "https://berkshares.org/",
+    "https://en.wikipedia.org/wiki/BerkShares",
+    "https://www.bristolworld.com/business/bristol-money-pound-3339270",
+    "https://en.wikipedia.org/wiki/Ithaca_Hours",
+    "https://www.mdpi.com/1911-8074/13/11/271",
+    "https://amiba.net/local-multiplier/",
+    "https://capitaloneshopping.com/research/shopping-local-statistics/",
+    "https://www.mordorintelligence.com/industry-reports/retail-industry",
+    "https://docs.radixdlt.com/main/reference-materials/transaction-fees.html",
+    "https://docs.radixdlt.com/docs/using-royalties"
+  ]
+}
